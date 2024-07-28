@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useProducts } from "./ProductContext";
 import EmptyCart from "../components/EmptyCart";
+import FilledCart from "../components/FilledCart";
 
 const Cart = () => {
   const { products, counter, loading, error, setProducts, setCounter } =
@@ -12,7 +13,12 @@ const Cart = () => {
     else setIsEmpty(true);
   }, [counter]);
 
-  return <div>{isEmpty && <EmptyCart />}</div>;
+  return (
+    <div className="bg-gray-600 bg-opacity-10">
+      {isEmpty && <EmptyCart />}
+      {!isEmpty && <FilledCart props={{ products, setProducts }} />}
+    </div>
+  );
 };
 
 export default Cart;

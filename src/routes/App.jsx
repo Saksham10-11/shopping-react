@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { v4 as uuidv4 } from "uuid";
 import { ProductProvider } from "./ProductContext";
@@ -10,6 +10,8 @@ const App = () => {
   const [counter, setCounter] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const sumOfCounts = products
@@ -41,6 +43,10 @@ const App = () => {
     fetchData();
   }, []);
 
+  const handleCartClick = () => {
+    navigate("/cart");
+  };
+
   return (
     <div className="w-screen h-screen flex flex-col bg-[url('/Images/main-background.jpg')] bg-cover bg-center bg-no-repeat">
       <div className="bg-opacity-40 bg-gray-800 h-screen px-10">
@@ -65,7 +71,7 @@ const App = () => {
               </li>
             </ul>
           </nav>
-          <div className="mt-6 cursor-pointer">
+          <div className="mt-6 cursor-pointer" onClick={handleCartClick}>
             <Badge badgeContent={counter} color="secondary">
               <ShoppingCartIcon style={{ color: "white", fontSize: 40 }} />
             </Badge>

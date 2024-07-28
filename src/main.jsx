@@ -5,6 +5,7 @@ import ErrorPage from "./error-page.jsx";
 import App from "./routes/App.jsx";
 import Shop from "./routes/Shop.jsx";
 import Cart from "./routes/Cart.jsx";
+import HomeScreenBanner from "./components/HomeScreenBanner.jsx";
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,10 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
+      {
+        path: "/",
+        element: <HomeScreenBanner />,
+      },
       {
         path: "shop",
         element: <Shop />,
